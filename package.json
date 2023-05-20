@@ -1,6 +1,6 @@
 {
   "name": "@jeebby/node-jeebby",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "Jeebby Node-RED nodes",
   "keywords": [
     "Node-RED",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "node-red": {
     "nodes": {
-	  "status": "jeebby/status.js"
+	  "jeebby-status": "jeebby/status.js"
     }
   },
   "dependencies": {

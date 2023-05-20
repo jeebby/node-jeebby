@@ -1,6 +1,6 @@
 <script type="text/javascript">
 (function() {
-    RED.nodes.registerType('status', {
+    RED.nodes.registerType('jeebby-status', {
         category: 'jeebby',
         color: '#C0C0C0',
         defaults: {
@@ -8,16 +8,10 @@
         inputs: 1,
         outputs: 0,
         icon: "font-awesome/fa-rocket",
-        label: function() {
-            if(this.sensors.length === 1) {
-                return `${RED._('sensor')}: ${this.sensors[0].name}`;
-            } else {
-                return `${RED._('sensors')}: ${this.sensors.length}`;
-            }
-        },
+        label: 'Status'
     });
 })();
 </script>
 
-<script type="text/html" data-template-name="status">
+<script type="text/html" data-template-name="jeebby-status">
 </script>

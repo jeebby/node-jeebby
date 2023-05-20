@@ -1,5 +1,5 @@
 {
-    "sensor": {
+    "jeebbyStatus": {
         "error_unknown": "Error unknown!",
         "results": "Results",
         "value": "Value",
