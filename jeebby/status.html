@@ -1,17 +1,47 @@
 <script type="text/javascript">
 (function() {
+    function getStatusLabel(status)
+    {
+        if(status == '0') {
+            return 'Not running';
+        } else if(status == '1') {
+            return 'Running';
+        } else if(status == '2') {
+            return 'Error';
+        } else if(status == '4') {
+            return 'Warning';
+        } else {
+            return '???';
+        }
+    }
+
     RED.nodes.registerType('jeebby-status', {
         category: 'jeebby',
-        color: '#C0C0C0',
+        color: '#63a4bc',
         defaults: {
+            status: {
+                value: "",
+                required: true
+            }
         },
         inputs: 1,
         outputs: 0,
-        icon: "font-awesome/fa-rocket",
-        label: 'Status'
+        label: function() {
+            return 'Jeebby status: ' + getStatusLabel(this.status);
+        },
+        icon: "font-awesome/fa-code-fork"
     });
 })();
 </script>
 
 <script type="text/html" data-template-name="jeebby-status">
+    <div class="form-row">
+        <label for="node-input-status"><i class="fa fa-shield"></i> <span data-i18n="jeebbyStatus.labels.status"></span></label>
+        <select id="node-input-status">
+            <option value="0">Not running</option>
+            <option value="1">Running</option>
+            <option value="2">Error</option>
+            <option value="4">Warning</option>
+        </select>
+    </div>
 </script>
