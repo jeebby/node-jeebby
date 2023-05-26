@@ -14,6 +14,6 @@ Jeebby is the tool to deploy and manage the programs the users wants to connect 
 The follow nodes are available to let your program use the Jeebby Storage and Status modules.
 
 ## Jeebby-status
-![image](https://github.com/jeebby/node-jeebby/assets/6877485/d31a0c30-c0fc-446c-aee9-462e3cbba9e9)
+![image](https://github.com/jeebby/node-jeebby/assets/6877485/c7edc8ca-6b7f-45af-9bbb-590afd3c3da4)
 
 Give status feedback for the flow back to the Jeebby platform. This status is shown to the user for the flow on the Jeebby platform.
