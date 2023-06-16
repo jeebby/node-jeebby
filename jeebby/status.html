@@ -8,10 +8,12 @@
             return 'Running';
         } else if(status == '2') {
             return 'Error';
-        } else if(status == '4') {
+        } else if(status == '3') {
             return 'Warning';
+        } else if(status == '4') {
+            return 'Executed';
         } else {
-            return '???';
+            throw Error('Invalid status type.');
         }
     }
 
@@ -41,7 +43,8 @@
             <option value="0">Not running</option>
             <option value="1">Running</option>
             <option value="2">Error</option>
-            <option value="4">Warning</option>
+            <option value="3">Warning</option>
+            <option value="4">Executed</option>
         </select>
     </div>
 </script>

@@ -1,0 +1,27 @@
+<script type="text/javascript">
+(function() {
+    RED.nodes.registerType('jeebby-storage-read', {
+        category: 'jeebby',
+        color: '#63a4bc',
+        defaults: { 
+            field: {
+                value: "",
+                required: true
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-code-fork",
+        label: function() {
+            return `Storage read: ${this.field}`;
+        }
+    });
+})();
+</script>
+
+<script type="text/html" data-template-name="jeebby-storage-read">
+    <div class="form-row">
+        <label for="node-input-field"><i class="fa fa-pencil"></i> <span data-i18n="jeebbyStorageRead.labels.field"></span></label>
+        <input type="text" id="node-input-field">
+    </div>
+</script>

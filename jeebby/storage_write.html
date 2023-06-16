@@ -1,0 +1,27 @@
+<script type="text/javascript">
+(function() {
+    RED.nodes.registerType('jeebby-storage-write', {
+        category: 'jeebby',
+        color: '#63a4bc',
+        defaults: { 
+            field: {
+                value: "",
+                required: true
+            }
+        },
+        inputs: 1,
+        outputs: 0,
+        icon: "font-awesome/fa-code-fork",
+        label: function() {
+            return `Storage write: ${this.field}`;
+        }
+    });
+})();
+</script>
+
+<script type="text/html" data-template-name="jeebby-storage-write">
+    <div class="form-row">
+        <label for="node-input-field"><i class="fa fa-pencil"></i> <span data-i18n="jeebbyStorageWrite.labels.field"></span></label>
+        <input type="text" id="node-input-field">
+    </div>
+</script>

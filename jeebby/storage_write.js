@@ -1,28 +1,28 @@
 const axios = require('axios');
 
 module.exports = function(RED) {
-    function JeebbyStatus(config) {
+    function JeebbyStorageWrite(config) {
         RED.nodes.createNode(this,config);
         const token = this.context().global.jeebby.token;
         const baseUrl = this.context().global.jeebby.baseUrl;
         const teamId = this.context().global.jeebby.teamId; //setted up in /data/settings.js # functionGlobalContext 
         const flowId = RED.util.getSetting(this, 'FLOW_ID');
-        const status = config.status;
+        const field = config.field;
         
         var node = this;
         node.on('input', function(msg, send, done) {
-            const url = `${baseUrl}/api/status/team/${teamId}/flow/${flowId}`;
-            const message = msg.payload;
+            const url = `${baseUrl}/api/storage/team/${teamId}/flow/${flowId}/field/${field}`;
+            const value = msg.payload;
 
-            if(status === void 0 || message === void 0) {
-                node.status({fill:"red", shape:"ring", text: RED._('jeebbyStatus.invalidPayload')});
+            if(value === void 0) {
+                node.status({fill:"red", shape:"ring", text: RED._('jeebbyStorageWrite.invalidPayload')});
                 node.send([msg]);
                 return;
             }
 
             axios.interceptors.request.use(function (config) {
                 if(node.id === config.env.node_id) {
-                    node.status({fill:"blue",shape:"dot",text:RED._('jeebbyStatus.pending')});
+                    node.status({fill:"yellow",shape:"dot",text:RED._('jeebbyStorageWrite.pending')});
                 }
                 return config;
               }, function (error) {
@@ -32,7 +32,7 @@ module.exports = function(RED) {
         
             axios.interceptors.response.use(function (response) {
                     if(node.id === response.config.env.node_id) {
-                        node.status({fill:"blue",shape:"dot",text:RED._('jeebbyStatus.processing')});
+                        node.status({fill:"yellow",shape:"dot",text:RED._('jeebbyStorageWrite.processing')});
                     }
                     return response;
                 }, function (error) {
@@ -41,8 +41,7 @@ module.exports = function(RED) {
             );
 
             axios.postForm(url, {
-                'status': status,
-                'message': message
+                'value': value
             }, {
                 headers: {
                     "User-Agent": "node-red",
@@ -53,16 +52,16 @@ module.exports = function(RED) {
                     node_id: node.id
                 }
             }).then(function(response) {
-                node.status({fill:"green",shape:"dot",text:`Status: ${message}`});
+                node.status({fill:"green",shape:"dot",text:`Last value: ${value}`});
                 done();
             })
             .catch(function(error) {
-                const status = error.hasOwnProperty('message') ? error.message : RED._('jeebbyStatus.error_unknown');
+                const status = error.hasOwnProperty('message') ? error.message : RED._('jeebbyStorageWrite.error_unknown');
                 node.status({fill:"red", shape:"ring", text:status});
                 done(error);
             });
         });
     }
 	
-    RED.nodes.registerType("jeebby-status",JeebbyStatus);
+    RED.nodes.registerType("jeebby-storage-write",JeebbyStorageWrite);
 }

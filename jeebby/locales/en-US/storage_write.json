@@ -1,0 +1,12 @@
+{
+    "jeebbyStorageWrite": {
+        "error_unknown": "Error unknown!",
+        "pending": "Pending...",
+        "processing": "Processing...",
+        "error": "Error",
+        "invalidPayload": "Invalid data to send.",
+        "labels": {
+            "field": "Field name"
+        }
+    }
+}
